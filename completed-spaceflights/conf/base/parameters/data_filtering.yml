@@ -4,6 +4,6 @@
 # Documentation for this file format can be found in "Parameters"
 # Link: https://kedro.readthedocs.io/en/stable/04_kedro_project_setup/02_configuration.html#parameters
 query:
-  quantum_v5: engine_type == 'Quantum' and shuttle_type == 'Type V5'
+  quantum_engine: engine_type == 'Quantum'
   many_staff: crew / passenger_capacity > 0.5
   no_check: d_check_complete == False

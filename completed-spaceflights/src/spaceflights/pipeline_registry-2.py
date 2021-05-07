@@ -35,7 +35,7 @@ from spaceflights.pipelines import data_processing as dp
 from spaceflights.pipelines import data_filtering as df
 from spaceflights.pipelines import data_science as ds
 
-FILTERS = ["quantum_v5", "many_staff", "no_check"]
+FILTERS = ["quantum_engine", "many_staff", "no_check"]
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
