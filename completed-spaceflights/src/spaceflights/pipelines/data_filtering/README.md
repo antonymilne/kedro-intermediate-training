@@ -1,4 +1,4 @@
-# Pipeline data_selection
+# Pipeline data_filtering
 
 > *Note:* This is a `README.md` boilerplate generated using `Kedro 0.17.3`.
 

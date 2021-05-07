@@ -4,4 +4,10 @@
 
 Last updated for kedro 0.17.3.
 
-Commands:
+# Commands:
+
+```bash
+kedro pipeline create data_filtering
+cp ../completed-spaceflights/conf/base/parameters/data_filtering.yml conf/base/parameters
+cp -r ../completed-spaceflights/src/spaceflights/pipelines/data_filtering/ src/spaceflights/pipelines/data_filtering  
+```

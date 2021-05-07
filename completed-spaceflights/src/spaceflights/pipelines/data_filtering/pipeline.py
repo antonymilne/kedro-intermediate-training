@@ -27,7 +27,7 @@
 # limitations under the License.
 
 """
-This is a boilerplate pipeline 'data_selection'
+This is a boilerplate pipeline 'data_filtering'
 generated using Kedro 0.17.3
 """
 

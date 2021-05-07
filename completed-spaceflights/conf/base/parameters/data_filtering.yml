@@ -1,4 +1,4 @@
-# This is a boilerplate parameters config generated for pipeline 'data_selection'
+# This is a boilerplate parameters config generated for pipeline 'data_filtering'
 # using Kedro 0.17.3.
 #
 # Documentation for this file format can be found in "Parameters"
