@@ -29,9 +29,10 @@
 """Project pipelines."""
 from typing import Dict
 
-from kedro.pipeline import Pipeline
+from kedro.pipeline import Pipeline, pipeline
 
 from spaceflights.pipelines import data_processing as dp
+# TODO: import the data_filtering pipeline.
 from spaceflights.pipelines import data_science as ds
 
 
@@ -43,10 +44,36 @@ def register_pipelines() -> Dict[str, Pipeline]:
 
     """
     data_processing_pipeline = dp.create_pipeline()
+    # TODO: define data_filtering_pipeline.
+    # TODO: alter the appropriate parameters file to filter by engine_type == "Quantum".
+    data_filtering_pipeline = Pipeline([])
     data_science_pipeline = ds.create_pipeline()
 
+    unfiltered_pipeline = data_processing_pipeline + data_science_pipeline
+
+    # TODO: use the `inputs` and `outputs` arguments of `pipeline` to connect
+    #  data_filtering_pipeline onto data_processing_pipeline and data_science_pipeline.
+    #  If you have node name clashes, use the `namespace` argument.
+    filtered_pipeline = (
+        pipeline(data_processing_pipeline)
+        + pipeline(data_filtering_pipeline)
+        + pipeline(data_science_pipeline)
+    )
+
     return {
-        "__default__": data_processing_pipeline + data_science_pipeline,
+        # TODO: update the pipeline registry to include filtered_pipeline in __default__
+        #  and to register new pipelines "unfiltered_pipeline" and "filtered_pipeline".
+        "__default__": unfiltered_pipeline,
         "dp": data_processing_pipeline,
         "ds": data_science_pipeline,
     }
+
+# CHALLENGE TODO 1: run the data_filtering_pipeline twice in series to get model
+#  performance after filtering by engine_type == "Quantum" AND then by
+#  shuttle_type == "Type F5". You should do this just by altering this file and
+#  parameters file without touching anything in pipelines/data_filtering.
+
+# CHALLENGE TODO 2: run the data_filtering_pipeline onwards twice in parallel to get
+#  model  performance after filtering by engine_type == "Quantum" OR by
+#  shuttle_type == "Type F5". You should do this just by altering this file and
+#  parameters file without touching anything in pipelines/data_filtering.
