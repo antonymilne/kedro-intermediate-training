@@ -41,8 +41,8 @@ def create_pipeline(**kwargs):
         [
             node(
                 func=filter_data,
-                inputs=["master_table", "params:query._"],
-                outputs="filtered_master_table",
+                inputs=["input_table", "params:filter"],
+                outputs="output_table",
             )
         ]
     )

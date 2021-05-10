@@ -29,9 +29,10 @@
 """Project pipelines."""
 from typing import Dict
 
-from kedro.pipeline import Pipeline
+from kedro.pipeline import Pipeline, pipeline
 
 from spaceflights.pipelines import data_processing as dp
+from spaceflights.pipelines import data_filtering as df
 from spaceflights.pipelines import data_science as ds
 
 
@@ -43,10 +44,27 @@ def register_pipelines() -> Dict[str, Pipeline]:
 
     """
     data_processing_pipeline = dp.create_pipeline()
+    data_filtering_pipeline = df.create_pipeline()
     data_science_pipeline = ds.create_pipeline()
 
+    unfiltered_pipeline = data_processing_pipeline + data_science_pipeline
+    filtered_pipeline = (
+        data_processing_pipeline
+        + pipeline(
+            data_filtering_pipeline,
+            inputs={"input_table": "master_table"},
+            outputs={"output_table": "filtered_master_table"},
+        )
+        + pipeline(
+            data_science_pipeline, inputs={"master_table": "filtered_master_table"},
+            namespace="filtered"
+        )
+    )
+
     return {
-        "__default__": data_processing_pipeline + data_science_pipeline,
+        "__default__": unfiltered_pipeline + filtered_pipeline,
+        "unfiltered_pipeline": unfiltered_pipeline,
+        "filtered_pipeline": filtered_pipeline,
         "dp": data_processing_pipeline,
         "ds": data_science_pipeline,
     }

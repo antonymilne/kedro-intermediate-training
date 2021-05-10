@@ -1,21 +1,14 @@
-# Pipeline data_filtering
-
-> *Note:* This is a `README.md` boilerplate generated using `Kedro 0.17.3`.
+# Data filtering pipeline
 
 ## Overview
 
-<!---
-Please describe your modular pipeline here.
--->
+This pipeline is used to filter the rows of input table according to a column in the table. 
 
 ## Pipeline inputs
 
-<!---
-The list of pipeline inputs.
--->
+* `input_table`: `pandas.DataFrame` to be filtered
+* `params:filter`: parameters dictionary containing the keys `column` (column on which to performed filter) and `value` (value to use for selecting rows) 
 
 ## Pipeline outputs
 
-<!---
-The list of pipeline outputs.
--->
+`output_table`: `pandas.DataFrame` containing only the rows of `input_table` for which `column == value`.
