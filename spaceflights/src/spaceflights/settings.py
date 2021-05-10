@@ -30,6 +30,7 @@
 from spaceflights.hooks import ProjectHooks
 
 # Instantiate and list your project hooks here
+# TODO: enable TimeDatasetLoadingHooks and InspectHooks.
 HOOKS = (ProjectHooks(),)
 
 # List the installed plugins for which to disable auto-registry
