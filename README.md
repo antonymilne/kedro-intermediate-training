@@ -4,10 +4,16 @@
 
 Last updated for kedro 0.17.3.
 
-# Commands:
+# Commands
+
+## Modular pipeline
 
 ```bash
 kedro pipeline create data_filtering
-cp ../completed-spaceflights/conf/base/parameters/data_filtering.yml conf/base/parameters
-cp -r ../completed-spaceflights/src/spaceflights/pipelines/data_filtering/ src/spaceflights/pipelines/data_filtering  
+kedro pipeline delete data_filtering
+kedro pipeline pull ../data_filtering-0.1-py3-none-any.whl
+
+kedro pipeline list
+kedro pipeline describe filtered_pipeline
+kedro pipeline package data_filtering
 ```
