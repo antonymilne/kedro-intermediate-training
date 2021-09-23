@@ -68,7 +68,7 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
 
 def evaluate_model(
     regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
-):
+) -> Dict[str, float]:
     """Calculates and logs the coefficient of determination.
 
     Args:
@@ -80,3 +80,4 @@ def evaluate_model(
     score = r2_score(y_test, y_pred)
     logger = logging.getLogger(__name__)
     logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
+    return {"r2": score}

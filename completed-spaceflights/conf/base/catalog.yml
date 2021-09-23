@@ -85,3 +85,7 @@ company_locations_plot:
     fig:
       x: company_location
       y: count
+
+metrics:
+  type: tracking.MetricsDataSet
+  filepath: data/08_reporting/metrics.json
