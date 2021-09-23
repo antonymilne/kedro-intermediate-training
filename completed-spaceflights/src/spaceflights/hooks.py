@@ -71,15 +71,14 @@ class InspectHooks:
     def before_node_run(self, node: Node) -> None:
         if "no_inspect" in node.tags:
             return
-        location, number_lines = _inspect_func(node.func)
         node_name = node.name
-        log.info(f"`{node_name}` defined at {location} and is {number_lines} lines long")
+        location, number_lines = _inspect_func(node.func)
+        log.info(f"`{node_name}` is defined at {location} and is {number_lines} lines long")
 
     @hook_impl
     def after_dataset_loaded(self, dataset_name: str, data: Any) -> None:
         if isinstance(data, pd.DataFrame):
-            log.info(f"`{dataset_name}` has shape {data.shape}")
-
+            log.info(f"{dataset_name} has shape {data.shape}")
 
 def _inspect_func(func: Callable) -> Tuple[str, int]:
     """Gives the location (file and line number) and number of lines in `func`."""

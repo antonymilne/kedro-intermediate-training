@@ -48,23 +48,36 @@ def register_pipelines() -> Dict[str, Pipeline]:
     data_science_pipeline = ds.create_pipeline()
 
     unfiltered_pipeline = data_processing_pipeline + data_science_pipeline
+
     filtered_pipeline = (
-        data_processing_pipeline
+        pipeline(data_processing_pipeline)
         + pipeline(
             data_filtering_pipeline,
-            inputs={"input_table": "master_table"},
-            outputs={"output_table": "filtered_master_table"},
+            inputs={"input_table": "model_input_table"},
+            outputs={"output_table": "filtered_model_input_table"},
         )
         + pipeline(
-            data_science_pipeline, inputs={"master_table": "filtered_master_table"},
-            namespace="filtered"
+            data_science_pipeline,
+            inputs={"model_input_table": "filtered_model_input_table"},
+            namespace="filtered",
         )
     )
 
     return {
         "__default__": unfiltered_pipeline + filtered_pipeline,
-        "unfiltered_pipeline": unfiltered_pipeline,
         "filtered_pipeline": filtered_pipeline,
+        "unfiltered_pipeline": unfiltered_pipeline,
         "dp": data_processing_pipeline,
         "ds": data_science_pipeline,
     }
+
+
+# CHALLENGE TODO 1: run the data_filtering_pipeline twice in series to get model
+#  performance after filtering by engine_type == "Quantum" AND then by
+#  shuttle_type == "Type F5". You should do this just by altering this file and
+#  parameters file without touching anything in pipelines/data_filtering.
+
+# CHALLENGE TODO 2: run the data_filtering_pipeline onwards twice in parallel to get
+#  model  performance after filtering by engine_type == "Quantum" OR by
+#  shuttle_type == "Type F5". You should do this just by altering this file and
+#  parameters file without touching anything in pipelines/data_filtering.
