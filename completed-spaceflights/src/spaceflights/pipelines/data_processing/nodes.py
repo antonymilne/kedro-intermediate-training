@@ -92,3 +92,7 @@ def create_model_input_table(
     )
     model_input_table = model_input_table.dropna()
     return model_input_table
+
+def get_top_company_locations(companies: pd.DataFrame) ->  pd.DataFrame:
+    locations_count = companies.groupby("company_location").size().reset_index(name="count")
+    return locations_count.sort_values("count").tail()

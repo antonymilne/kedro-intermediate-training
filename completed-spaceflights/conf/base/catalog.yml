@@ -76,3 +76,12 @@ regressor:
   filepath: data/06_models/regressor.pickle
   versioned: true
   layer: models
+
+company_locations_plot:
+  type: plotly.PlotlyDataSet
+  filepath: data/08_reporting/company_locations_plot.json
+  plotly_args:
+    type: bar
+    fig:
+      x: company_location
+      y: count

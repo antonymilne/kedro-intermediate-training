@@ -27,7 +27,7 @@
 # limitations under the License.
 from kedro.pipeline import Pipeline, node
 
-from .nodes import create_model_input_table, preprocess_companies, preprocess_shuttles
+from .nodes import create_model_input_table, preprocess_companies, preprocess_shuttles, get_top_company_locations
 
 
 def create_pipeline(**kwargs):
@@ -51,5 +51,11 @@ def create_pipeline(**kwargs):
                 outputs="model_input_table",
                 name="create_model_input_table_node",
             ),
+            node(
+                func=get_top_company_locations,
+                inputs="preprocessed_companies",
+                outputs="company_locations_plot",
+                name="plot_top_company_locations_node",
+            )
         ]
     )
