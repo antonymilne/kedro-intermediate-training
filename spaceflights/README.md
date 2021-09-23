@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is your new Kedro project, which was generated using `Kedro 0.17.3`, with the completed version of the [spaceflights tutorial](https://kedro.readthedocs.io/en/stable/03_tutorial/01_spaceflights_tutorial.html) and the data necessary to run the project.
+This is your new Kedro project, which was generated using `Kedro 0.17.5`, with the completed version of the [spaceflights tutorial](https://kedro.readthedocs.io/en/stable/03_tutorial/01_spaceflights_tutorial.html) and the data necessary to run the project.
 
 Take a look at the [Kedro documentation](https://kedro.readthedocs.io) to get started.
 
@@ -22,7 +22,7 @@ Declare any dependencies in `src/requirements.txt` for `pip` installation and `s
 To install them, run:
 
 ```
-kedro install
+pip install -r src/requirements.txt
 ```
 
 ## How to run Kedro

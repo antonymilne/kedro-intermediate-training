@@ -1,17 +1,17 @@
 # Data Science pipeline
 
-> *Note:* This `README.md` was generated using `Kedro 0.17.3` for illustration purposes. Please modify it according to your pipeline structure and contents.
+> *Note:* This `README.md` was generated using `Kedro 0.17.5` for illustration purposes. Please modify it according to your pipeline structure and contents.
 
 ## Overview
 
 This modular pipeline:
-1. Splits the master table into train and test subsets (`split_data_node`)
+1. Splits the model input table into train and test subsets (`split_data_node`)
 2. Trains a simple linear regression model (`train_model_node`)
 3. Evaluates the performance of the trained model on the test set (`evaluate_model_node`)
 
 ## Pipeline inputs
 
-### `master_table`
+### `model_input_table`
 
 |      |                    |
 | ---- | ------------------ |
