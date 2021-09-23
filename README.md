@@ -11,9 +11,11 @@ Last updated for kedro 0.17.5.
 ```bash
 kedro pipeline create data_filtering
 kedro pipeline delete data_filtering
+
 kedro pipeline pull ../data_filtering-0.1-py3-none-any.whl
 
-kedro pipeline list
-kedro pipeline describe filtered_pipeline
+kedro registry list
+kedro registry describe filtered_pipeline
+
 kedro pipeline package data_filtering
 ```
