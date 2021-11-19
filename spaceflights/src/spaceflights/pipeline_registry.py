@@ -57,6 +57,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
     # TODO 3: give data_science_pipeline the namespace "filtered". Connect the
     #  data_filtering_pipeline onto the model_input_table as input and
     #  the data science pipeline as output using `inputs`, `outputs` and `namespace`.
+    #  Add the pipeline to the __default__ and ds registered pipelines.
     filtered_ds_pipeline = pipeline(data_filtering_pipeline) + pipeline(
         data_science_pipeline
     )
@@ -65,11 +66,9 @@ def register_pipelines() -> Dict[str, Pipeline]:
         # TODO 4: update the pipeline registry to register two new pipelines
         #  "unfiltered_pipeline" and "filtered_pipeline" that run the data processing
         #  and appropriate data science pipelines.
-        "__default__": (
-            data_processing_pipeline + unfiltered_ds_pipeline + filtered_ds_pipeline
-        ),
+        "__default__": (data_processing_pipeline + unfiltered_ds_pipeline),
         "dp": data_processing_pipeline,
-        "ds": unfiltered_ds_pipeline + filtered_ds_pipeline,
+        "ds": unfiltered_ds_pipeline,
     }
 
 
