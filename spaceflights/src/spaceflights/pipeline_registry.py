@@ -31,8 +31,8 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline, pipeline
 
+# TODO 2: import the data_filtering pipeline.
 from spaceflights.pipelines import data_processing as dp
-# TODO: import the data_filtering pipeline.
 from spaceflights.pipelines import data_science as ds
 
 
@@ -44,36 +44,45 @@ def register_pipelines() -> Dict[str, Pipeline]:
 
     """
     data_processing_pipeline = dp.create_pipeline()
-    # TODO: define data_filtering_pipeline.
-    # TODO: alter the appropriate parameters file to filter by engine_type == "Quantum".
-    data_filtering_pipeline = Pipeline([])
     data_science_pipeline = ds.create_pipeline()
 
-    unfiltered_pipeline = data_processing_pipeline + data_science_pipeline
+    # TODO 1: give data_science_pipeline the namespace "unfiltered" and make sure it
+    #  links up correctly to the model_input_table input.
+    unfiltered_ds_pipeline = data_science_pipeline
 
-    # TODO: use the `inputs` and `outputs` arguments of `pipeline` to connect
-    #  data_filtering_pipeline onto data_processing_pipeline and data_science_pipeline.
-    #  If you have node name clashes, use the `namespace` argument.
-    filtered_pipeline = (
-        pipeline(data_processing_pipeline)
-        + pipeline(data_filtering_pipeline)
-        + pipeline(data_science_pipeline)
+    # TODO 2: create the data_filtering_pipeline using the create_pipeline method.
+    # TODO 2: alter the appropriate parameters file to filter by engine_type == "Quantum".
+    data_filtering_pipeline = Pipeline([])
+
+    # TODO 3: give data_science_pipeline the namespace "filtered". Connect the
+    #  data_filtering_pipeline onto the model_input_table as input and
+    #  the data science pipeline as output using `inputs`, `outputs` and `namespace`.
+    filtered_ds_pipeline = pipeline(data_filtering_pipeline) + pipeline(
+        data_science_pipeline
     )
 
     return {
-        # TODO: update the pipeline registry to include filtered_pipeline in __default__
-        #  and to register new pipelines "unfiltered_pipeline" and "filtered_pipeline".
-        "__default__": unfiltered_pipeline,
+        # TODO 4: update the pipeline registry to register two new pipelines
+        #  "unfiltered_pipeline" and "filtered_pipeline" that run the data processing
+        #  and appropriate data science pipelines.
+        "__default__": (
+            data_processing_pipeline + unfiltered_ds_pipeline + filtered_ds_pipeline
+        ),
         "dp": data_processing_pipeline,
-        "ds": data_science_pipeline,
+        "ds": unfiltered_ds_pipeline + filtered_ds_pipeline,
     }
 
-# CHALLENGE TODO 1: run the data_filtering_pipeline twice in series to get model
+
+# EXTRA TODO 1: give data_processing_pipeline a namespace so that it can be
+#  collapsed in kedro-viz. You will need to fix the inputs/outputs and/or edit the
+#  names of the catalog entries to get a correctly connected pipeline.
+
+# EXTRA TODO 2: run the data_filtering_pipeline twice in series to get model
 #  performance after filtering by engine_type == "Quantum" AND then by
 #  shuttle_type == "Type F5". You should do this just by altering this file and
 #  parameters file without touching anything in pipelines/data_filtering.
 
-# CHALLENGE TODO 2: run the data_filtering_pipeline onwards twice in parallel to get
+# EXTRA TODO 3: run the data_filtering_pipeline onwards twice in parallel to get
 #  model  performance after filtering by engine_type == "Quantum" OR by
 #  shuttle_type == "Type F5". You should do this just by altering this file and
 #  parameters file without touching anything in pipelines/data_filtering.

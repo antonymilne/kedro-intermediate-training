@@ -26,6 +26,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import logging
+import random
 from typing import Dict, Tuple
 
 import pandas as pd
@@ -80,4 +81,4 @@ def evaluate_model(
     score = r2_score(y_test, y_pred)
     logger = logging.getLogger(__name__)
     logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
-    return {"r2": score}
+    return {"r2": score, "random": 0.7 * random.random()}

@@ -88,6 +88,10 @@ company_locations_plot:
       x: company_location
       y: count
 
-metrics:
+filtered.metrics:
   type: tracking.MetricsDataSet
   filepath: data/08_reporting/metrics.json
+
+unfiltered.metrics:
+  type: tracking.MetricsDataSet
+  filepath: data/08_reporting/unfiltered_metrics.json

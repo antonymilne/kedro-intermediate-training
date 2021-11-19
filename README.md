@@ -9,6 +9,7 @@ Last updated for kedro 0.17.5.
 ## Modular pipeline
 
 ```bash
+kedro viz --autoreload
 kedro pipeline pull ../data_filtering-0.1-py3-none-any.whl
 
 kedro registry list
