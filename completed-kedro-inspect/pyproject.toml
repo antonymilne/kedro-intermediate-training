@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "kedro-inspect"
+version = "0.1"
+description = "Blah blah blah"
+authors = ["Antony Milne <blah@blah.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.entry_points.kedro.hooks]
+inspect_hooks = "kedro_inspect.plugin:inspect_hooks"
+time_dataset_loading_hooks = "kedro_inspect.plugin:time_dataset_loading_hooks"
+
+[project.entry_points.kedro.project_commands]
+inspect_cli_hooks = "kedro_inspect.cli_plugin:inspect_cli"
