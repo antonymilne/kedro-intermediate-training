@@ -11,10 +11,8 @@ Last updated for kedro 0.18.0.ß
 ```bash
 kedro viz --autoreload
 
-kedro pipeline pull ../data_filtering-0.1-py3-none-any.whl
+kedro micropkg pull ../data_filtering-0.1.tar.gz -d pipelines
 
 kedro registry list
 kedro registry describe filtered_pipeline
-
-kedro pipeline package data_filtering
 ```
