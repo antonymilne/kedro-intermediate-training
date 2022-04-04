@@ -34,11 +34,11 @@ handlers:
         encoding: utf8
         delay: True
 
-#    inspect_handler:
-#        class: kedro.extras.logging.ColorHandler
-#        level: INFO
-#        formatter: simple
-#        stream: ext://sys.stdout
+    inspect_handler:
+        class: kedro.extras.logging.ColorHandler
+        level: INFO
+        formatter: simple
+        stream: ext://sys.stdout
 
 loggers:
     anyconfig:
@@ -56,10 +56,10 @@ loggers:
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
 
-#    spaceflights:
-#        level: INFO
-#        handlers: [inspect_handler]
-#        propagate: no
+    spaceflights:
+        level: INFO
+        handlers: [inspect_handler]
+        propagate: no
 
 root:
     level: INFO
