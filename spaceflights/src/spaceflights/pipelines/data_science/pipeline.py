@@ -17,7 +17,7 @@ def create_pipeline(**kwargs):
                 inputs=["X_train", "y_train"],
                 outputs="regressor",
                 name="train_model_node",
-                tags=["no_inspect"]
+                tags=["no_inspect"],
             ),
             node(
                 func=evaluate_model,

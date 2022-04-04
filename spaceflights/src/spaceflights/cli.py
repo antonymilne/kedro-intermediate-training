@@ -1,5 +1,12 @@
+import click
 from kedro.framework.project import pipelines
+
 from spaceflights.hooks import _inspect_func
+
+
+@click.group()
+def cli():
+    pass
 
 
 @cli.command()
