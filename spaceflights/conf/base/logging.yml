@@ -34,12 +34,6 @@ handlers:
         encoding: utf8
         delay: True
 
-    journal_file_handler:
-        class: kedro.versioning.journal.JournalFileHandler
-        level: INFO
-        base_dir: logs/journals
-        formatter: json_formatter
-
 #    inspect_handler:
 #        class: kedro.extras.logging.ColorHandler
 #        level: INFO
@@ -60,11 +54,6 @@ loggers:
     kedro.pipeline:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
-        propagate: no
-
-    kedro.journal:
-        level: INFO
-        handlers: [journal_file_handler]
         propagate: no
 
 #    spaceflights:
