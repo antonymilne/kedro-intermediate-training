@@ -3,7 +3,6 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline, pipeline
 
-# TODO 2: import the data_filtering pipeline.
 from spaceflights.pipelines import data_processing as dp
 from spaceflights.pipelines import data_science as ds
 
@@ -20,7 +19,7 @@ def register_pipelines() -> Dict[str, Pipeline]:
 
     # TODO 1: give data_science_pipeline the namespace "unfiltered" and make sure it
     #  links up correctly to the model_input_table input.
-    unfiltered_ds_pipeline = data_science_pipeline
+    unfiltered_ds_pipeline = pipeline(data_science_pipeline)
 
     # TODO 2: create the data_filtering_pipeline using the create_pipeline method.
     # TODO 2: alter the appropriate parameters file to filter by engine_type == "Quantum".
@@ -29,18 +28,17 @@ def register_pipelines() -> Dict[str, Pipeline]:
     # TODO 3: give data_science_pipeline the namespace "filtered". Connect the
     #  data_filtering_pipeline onto the model_input_table as input and
     #  the data science pipeline as output using `inputs`, `outputs` and `namespace`.
-    #  Add the pipeline to the __default__ and ds registered pipelines.
-    filtered_ds_pipeline = pipeline(data_filtering_pipeline) + pipeline(
-        data_science_pipeline
-    )
+    filtered_ds_pipeline = data_filtering_pipeline + data_science_pipeline
 
     return {
         # TODO 4: update the pipeline registry to register two new pipelines
         #  "unfiltered_pipeline" and "filtered_pipeline" that run the data processing
         #  and appropriate data science pipelines.
-        "__default__": (data_processing_pipeline + unfiltered_ds_pipeline),
+        "__default__": (
+            data_processing_pipeline + unfiltered_ds_pipeline + filtered_ds_pipeline
+        ),
         "dp": data_processing_pipeline,
-        "ds": unfiltered_ds_pipeline,
+        "ds": unfiltered_ds_pipeline + filtered_ds_pipeline,
     }
 
 
