@@ -29,7 +29,6 @@ def register_pipelines() -> Dict[str, Pipeline]:
             data_filtering_pipeline,
             inputs={"input_table": "model_input_table"},
             outputs={"output_table": "filtered.model_input_table"},
-            namespace="filtered",
         )
         + pipeline(data_science_pipeline, namespace="filtered")
     )
