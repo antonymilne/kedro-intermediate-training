@@ -10,10 +10,10 @@ HOOKS = (InspectHooks(), TimeDatasetLoadingHooks())
 # Installed plugins for which to disable hook auto-registration.
 # DISABLE_HOOKS_FOR_PLUGINS = ("kedro-viz",)
 
-from kedro_viz.integrations.kedro.sqlite_store import SQLiteStore
-from pathlib import Path
-SESSION_STORE_CLASS = SQLiteStore
-SESSION_STORE_ARGS = {"path": str(Path(__file__).parents[2] / "data")}
+# from kedro_viz.integrations.kedro.sqlite_store import SQLiteStore
+# from pathlib import Path
+# SESSION_STORE_CLASS = SQLiteStore
+# SESSION_STORE_ARGS = {"path": str(Path(__file__).parents[2] / "data")}
 
 # Class that manages Kedro's library components.
 # from kedro.framework.context import KedroContext
