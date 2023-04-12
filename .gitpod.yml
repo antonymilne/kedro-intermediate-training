@@ -1,7 +1,7 @@
 image: gitpod/workspace-full:2023-01-16-03-31-28
 
 tasks:
-  - init: pip install -r spaceflights/src/requirements.txt
+  - init: pip install -U pip && pip install -r spaceflights/src/requirements.txt
 
 github:
   prebuilds:
